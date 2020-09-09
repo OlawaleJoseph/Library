@@ -32,6 +32,17 @@ function displayBooks() {
   });
 }
 
+function validateForm() {
+  const errors = [];
+  if (!bookTitle.value) {
+    errors.push('Book title is required');
+  } else if (!bookAuthor.value) {
+    errors.push('Book author is required');
+  } else if (!bookPages.value) {
+    errors.push('Number of pages is required');
+  }
+  return errors;
+}
 
 displayBooks();
 
@@ -41,6 +52,19 @@ submitBtn.addEventListener('click', (e) => {
   const author = bookAuthor.value;
   const pages = bookPages.value;
   const read = document.querySelector('input[name=bookRead]:checked').value;
+  const errorsDiv = document.querySelector('.errors');
+
+  const validationErrors = validateForm();
+  if (validationErrors.length > 0) {
+    errorsDiv.innerHTML = '';
+    for (let i = 0; i < validationErrors.length; i += 1) {
+      const p = document.createElement('p');
+      p.textContent = validationErrors[i];
+      p.classList.add('text-danger');
+      errorsDiv.appendChild(p);
+    }
+    return;
+  }
 
   const newBook = new Book(title, author, pages, read);
   addBookToLibrary(newBook);

@@ -8,25 +8,26 @@
   <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-  <h1 class="text-center">Welcome To(Name) Library</h1>
+  <h1 class="text-center">Welcome To Book Library</h1>
   <div class="w-50 mx-auto mt-5">
+    <div class="errors"></div>
     <form>
       <div class="form-group">
         <h3>Add New Book</h3>
-        <input type="text" class="form-control" id="bookTitle" placeholder="Title">
+        <input type="text" class="form-control" id="bookTitle" placeholder="Title" required>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" id="bookAuthor" placeholder="Author">
+        <input type="text" class="form-control" id="bookAuthor" placeholder="Author" required>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="bookPages" placeholder="Number Of Pages">
+        <input type="number" class="form-control" id="bookPages" placeholder="Number Of Pages" required>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" name="bookRead" type="radio" id="bookReadTrue" value="true">
+        <input class="form-check-input" name="bookRead" type="radio" id="bookReadTrue" value="true" required>
         <label class="form-check-label" for="inlineCheckbox1">Read</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" name="bookRead" type="radio" id="bookReadFalse" value="false">
+        <input class="form-check-input" name="bookRead" type="radio" id="bookReadFalse" value="false" required checked>
         <label class="form-check-label" for="inlineCheckbox2">Not read</label>
       </div>
       <button type="submit" class="btn btn-primary submit_btn">Submit</button>
