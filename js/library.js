@@ -11,13 +11,6 @@ function addBookToLibrary(book) {
   library.push(book);
 }
 
-const a = new Book('sss', 'ddd', 888, true);
-const b = new Book('sss', 'ddd', 888, true);
-const c = new Book('sss', 'ddd', 888, false);
-addBookToLibrary(a);
-addBookToLibrary(b);
-addBookToLibrary(c);
-
 function displayBooks() {
   const cardsDiv = document.querySelector('#books');
   library.forEach((book) => {
@@ -32,4 +25,21 @@ function displayBooks() {
     cardsDiv.appendChild(card);
   });
 }
-displayBooks();
+
+const bookTitle = document.querySelector('#bookTitle');
+const bookAuthor = document.querySelector('#bookAuthor');
+const bookPages = document.querySelector('#bookPages');
+const submitBtn = document.querySelector('.submit_btn');
+
+submitBtn.addEventListener('click', (e) => {
+  console.log('you clicked me');
+  e.preventDefault();
+  const title = bookTitle.value;
+  const author = bookAuthor.value;
+  const pages = bookPages.value;
+  const read = document.querySelector('input[name=bookRead]:checked').value;
+
+  const newBook = new Book(title, author, pages, read);
+  addBookToLibrary(newBook);
+  displayBooks();
+});
