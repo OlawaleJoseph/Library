@@ -13,6 +13,7 @@ function addBookToLibrary(book) {
 
 function displayBooks() {
   const cardsDiv = document.querySelector('#books');
+  cardsDiv.innerHTML = '';
   library.forEach((book) => {
     const card = document.createElement('div');
     card.classList.add('card', 'm-2');
@@ -26,13 +27,14 @@ function displayBooks() {
   });
 }
 
+displayBooks();
+
 const bookTitle = document.querySelector('#bookTitle');
 const bookAuthor = document.querySelector('#bookAuthor');
 const bookPages = document.querySelector('#bookPages');
 const submitBtn = document.querySelector('.submit_btn');
 
 submitBtn.addEventListener('click', (e) => {
-  console.log('you clicked me');
   e.preventDefault();
   const title = bookTitle.value;
   const author = bookAuthor.value;
