@@ -1,3 +1,8 @@
+const bookTitle = document.querySelector('#bookTitle');
+const bookAuthor = document.querySelector('#bookAuthor');
+const bookPages = document.querySelector('#bookPages');
+const submitBtn = document.querySelector('.submit_btn');
+
 const library = [];
 
 function Book(title, author, pages, read) {
@@ -27,12 +32,8 @@ function displayBooks() {
   });
 }
 
-displayBooks();
 
-const bookTitle = document.querySelector('#bookTitle');
-const bookAuthor = document.querySelector('#bookAuthor');
-const bookPages = document.querySelector('#bookPages');
-const submitBtn = document.querySelector('.submit_btn');
+displayBooks();
 
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -44,4 +45,5 @@ submitBtn.addEventListener('click', (e) => {
   const newBook = new Book(title, author, pages, read);
   addBookToLibrary(newBook);
   displayBooks();
+  document.querySelector('form').reset();
 });
