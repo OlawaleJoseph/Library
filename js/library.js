@@ -5,6 +5,7 @@ const submitBtn = document.querySelector('.submit_btn');
 const booksContainer = document.querySelector('#books');
 
 const library = [];
+const bookStorage = window.localStorage;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -16,6 +17,10 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(book) {
   library.push(book);
 }
+
+// function addBookToLocalStorage(book) {
+
+// }
 
 function displayBooks() {
   const cardsDiv = document.querySelector('#books');
