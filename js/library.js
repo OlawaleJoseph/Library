@@ -3,6 +3,7 @@ const bookAuthor = document.querySelector('#bookAuthor');
 const bookPages = document.querySelector('#bookPages');
 const submitBtn = document.querySelector('.submit_btn');
 const booksContainer = document.querySelector('#books');
+const addBookBtn = document.querySelector('#add-book');
 
 const library = localStorage.getItem('library') ? JSON.parse(localStorage.getItem('library')) : [];
 
@@ -60,6 +61,11 @@ function validateForm() {
 }
 
 displayBooks();
+
+addBookBtn.addEventListener('click', () => {
+  const form = document.querySelector('.form-container');
+  form.classList.remove('d-none');
+});
 
 submitBtn.addEventListener('click', (e) => {
   e.preventDefault();
