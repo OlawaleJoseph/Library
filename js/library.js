@@ -60,47 +60,50 @@ function validateForm() {
   return errors;
 }
 
-displayBooks();
+function eventListeners() {
+  addBookBtn.addEventListener('click', () => {
+    const form = document.querySelector('.form-container');
+    form.classList.remove('d-none');
+  });
 
-addBookBtn.addEventListener('click', () => {
-  const form = document.querySelector('.form-container');
-  form.classList.remove('d-none');
-});
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const title = bookTitle.value;
+    const author = bookAuthor.value;
+    const pages = bookPages.value;
+    const read = document.querySelector('input[name=bookRead]:checked').value;
+    const errorsDiv = document.querySelector('.errors');
 
-submitBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const title = bookTitle.value;
-  const author = bookAuthor.value;
-  const pages = bookPages.value;
-  const read = document.querySelector('input[name=bookRead]:checked').value;
-  const errorsDiv = document.querySelector('.errors');
-
-  const validationErrors = validateForm();
-  if (validationErrors.length > 0) {
-    errorsDiv.innerHTML = '';
-    for (let i = 0; i < validationErrors.length; i += 1) {
-      const p = document.createElement('p');
-      p.textContent = validationErrors[i];
-      p.classList.add('text-danger');
-      errorsDiv.appendChild(p);
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      errorsDiv.innerHTML = '';
+      for (let i = 0; i < validationErrors.length; i += 1) {
+        const p = document.createElement('p');
+        p.textContent = validationErrors[i];
+        p.classList.add('text-danger');
+        errorsDiv.appendChild(p);
+      }
+      return;
     }
-    return;
-  }
 
-  const newBook = new Book(title, author, pages, read);
-  addBookToLibrary(newBook);
-  displayBooks();
-  document.querySelector('form').reset();
-});
+    const newBook = new Book(title, author, pages, read);
+    addBookToLibrary(newBook);
+    displayBooks();
+    document.querySelector('form').reset();
+  });
 
-booksContainer.addEventListener('click', (e) => {
-  const bookId = e.target.getAttribute('data-id');
-  const bookRead = e.target.getAttribute('data-read');
-  if (bookId !== null) {
-    removeBookfromLibrary(bookId);
-  }
+  booksContainer.addEventListener('click', (e) => {
+    const bookId = e.target.getAttribute('data-id');
+    const bookRead = e.target.getAttribute('data-read');
+    if (bookId !== null) {
+      removeBookfromLibrary(bookId);
+    }
 
-  if (bookRead !== null) {
-    updateReadStatus(bookRead);
-  }
-});
+    if (bookRead !== null) {
+      updateReadStatus(bookRead);
+    }
+  });
+}
+
+displayBooks();
+eventListeners();
