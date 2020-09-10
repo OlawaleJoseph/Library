@@ -26,9 +26,9 @@ function displayBooks() {
     card.innerHTML = `<div class="card-body">
         <h5 class="card-title">Title: ${book.title}</h5>
         <h6 class="card-subtitle mb-2 text-muted pb-2 border-bottom">Author: ${book.author}</h6>
-        <p class="card-text">Pages: ${book.pages}</p>
-        <p class="card-text">${book.read ? 'Read' : 'Unread'}</p>
-        <button class="btn btn-danger" data-id=${index} class="delete">Delete</button>
+        <p class="card-text">Pages: ${book.pages} <button class="text-success ml-3 pl-2 pr-2 rounded" data-read=${index}>${book.read ? 'Read' : 'Unread'}</button></p>
+        
+        <br><button class="btn btn-danger" data-id=${index} class="delete">Delete</button>
         </div>`;
     cardsDiv.appendChild(card);
   });
@@ -36,6 +36,11 @@ function displayBooks() {
 
 function removeBookfromLibrary(index) {
   library.splice(index, 1);
+  displayBooks();
+}
+
+function updateReadStatus(index) {
+  library[index].read = !library[index].read;
   displayBooks();
 }
 
@@ -81,5 +86,12 @@ submitBtn.addEventListener('click', (e) => {
 
 booksContainer.addEventListener('click', (e) => {
   const bookId = e.target.getAttribute('data-id');
-  removeBookfromLibrary(bookId);
+  const bookRead = e.target.getAttribute('data-read');
+  if (bookId !== null) {
+    removeBookfromLibrary(bookId);
+  }
+
+  if (bookRead !== null) {
+    updateReadStatus(bookRead);
+  }
 });
