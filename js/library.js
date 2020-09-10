@@ -2,6 +2,7 @@ const bookTitle = document.querySelector('#bookTitle');
 const bookAuthor = document.querySelector('#bookAuthor');
 const bookPages = document.querySelector('#bookPages');
 const submitBtn = document.querySelector('.submit_btn');
+const deleteBtn = document.querySelector('#delete');
 
 const library = [];
 
@@ -16,10 +17,14 @@ function addBookToLibrary(book) {
   library.push(book);
 }
 
+function removeBookfromLibrary(index) {
+  library.splice(index, 1);
+}
+
 function displayBooks() {
   const cardsDiv = document.querySelector('#books');
   cardsDiv.innerHTML = '';
-  library.forEach((book) => {
+  library.forEach((book, index) => {
     const card = document.createElement('div');
     card.classList.add('card', 'm-2');
     card.innerHTML = `<div class="card-body">
@@ -27,7 +32,8 @@ function displayBooks() {
         <h6 class="card-subtitle mb-2 text-muted pb-2 border-bottom">Author: ${book.author}</h6>
         <p class="card-text">Pages: ${book.pages}</p>
         <p class="card-text">${book.read ? 'Read' : 'Unread'}</p>
-      </div>`;
+        <button class="btn btn-danger" data-id=${index} class="delete">Delete</button>
+        </div>`;
     cardsDiv.appendChild(card);
   });
 }
@@ -35,7 +41,7 @@ function displayBooks() {
 function validateForm() {
   const errors = [];
   if (!bookTitle.value) {
-    errors.push('Book title is required');
+    errors.push('Book title is reqiduired');
   } else if (!bookAuthor.value) {
     errors.push('Book author is required');
   } else if (!bookPages.value) {
