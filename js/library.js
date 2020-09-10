@@ -2,7 +2,7 @@ const bookTitle = document.querySelector('#bookTitle');
 const bookAuthor = document.querySelector('#bookAuthor');
 const bookPages = document.querySelector('#bookPages');
 const submitBtn = document.querySelector('.submit_btn');
-const deleteBtn = document.querySelector('#delete');
+const booksContainer = document.querySelector('#books');
 
 const library = [];
 
@@ -15,10 +15,6 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(book) {
   library.push(book);
-}
-
-function removeBookfromLibrary(index) {
-  library.splice(index, 1);
 }
 
 function displayBooks() {
@@ -36,6 +32,11 @@ function displayBooks() {
         </div>`;
     cardsDiv.appendChild(card);
   });
+}
+
+function removeBookfromLibrary(index) {
+  library.splice(index, 1);
+  displayBooks();
 }
 
 function validateForm() {
@@ -76,4 +77,9 @@ submitBtn.addEventListener('click', (e) => {
   addBookToLibrary(newBook);
   displayBooks();
   document.querySelector('form').reset();
+});
+
+booksContainer.addEventListener('click', (e) => {
+  const bookId = e.target.getAttribute('data-id');
+  removeBookfromLibrary(bookId);
 });
