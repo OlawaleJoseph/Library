@@ -6,6 +6,8 @@ In this project, we built a simple library project and made use of the following
 - LocalStorage
 - Use of JavaScript functions and loops
 
+![screenshot](./library.gif)
+
 ## Built With
 
 - HTML

@@ -23,17 +23,19 @@ function displayBooks() {
   const booksLibrary = JSON.parse(localStorage.getItem('library'));
   const cardsDiv = document.querySelector('#books');
   cardsDiv.innerHTML = '';
-  booksLibrary.forEach((book, index) => {
-    const card = document.createElement('div');
-    card.classList.add('card', 'm-2');
-    card.innerHTML = `<div class="card-body">
-        <h5 class="card-title">Title: ${book.title}</h5>
-        <h6 class="card-subtitle mb-2 text-muted pb-2 border-bottom">Author: ${book.author}</h6>
-        <p class="card-text">Pages: ${book.pages} <button class="text-success ml-3 pl-2 pr-2 rounded" data-read=${index}>${book.read ? 'Read' : 'Unread'}</button></p>
-        <br><button class="btn btn-danger" data-id=${index} class="delete">Delete</button>
-        </div>`;
-    cardsDiv.appendChild(card);
-  });
+  if (booksLibrary !== null) {
+    booksLibrary.forEach((book, index) => {
+      const card = document.createElement('div');
+      card.classList.add('card', 'm-2');
+      card.innerHTML = `<div class="card-body">
+          <h5 class="card-title">Title: ${book.title}</h5>
+          <h6 class="card-subtitle mb-2 text-muted pb-2 border-bottom">Author: ${book.author}</h6>
+          <p class="card-text">Pages: ${book.pages} <button class="text-success ml-3 pl-2 pr-2 rounded" data-read=${index}>${book.read ? 'Read' : 'Unread'}</button></p>
+          <br><button class="btn btn-danger" data-id=${index} class="delete">Delete</button>
+          </div>`;
+      cardsDiv.appendChild(card);
+    });
+  }
 }
 
 function removeBookfromLibrary(index) {
